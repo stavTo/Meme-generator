@@ -10,19 +10,25 @@
 </head>
 
 <body onload="onInit()">
-    <header>
-        <span>MemeGen</span>
-        <button onclick="renderGallery()">Gallery</button>
-        <button onclick="renderSaveMames()">Memes</button>
-        <button>About</button>
+    <header class="main-header main-layout">
+        <nav class="main-nav-container">
+            <a class="logo" href="#"><img src="icons/LOGO.png" alt=""></a>
+            <ul class="main-nav clean-list">
+                <li><a href="#" onclick="renderGallery()">Gallery</a></li>
+                <li><a href="#" onclick="renderSaveMames()">Memes</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="main flex">
-
+    <main class="main">
+        
     </main>
 
-    
+
     <script src="js/service/storage.js"></script>
+    <script src="js/service/upload-from-local.js"></script>
+    <script src="js/service/sharing-on-facebook.js"></script>
     <script src="js/service/memeService.js"></script>
     <script src="js/saveMemesController.js"></script>
     <script src="js/galleryController.js"></script>
@@ -30,6 +36,3 @@
 </body>
 
 </html>
-
-
-

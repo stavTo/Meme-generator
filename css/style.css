@@ -1,48 +1,18 @@
-* {
-    box-sizing: border-box;
-}
 
-body {
-    margin: 0;
-    padding: 0;
+/*SETUP*/
 
-}
+@import url(setup/vars.css);
+@import url(setup/typography.css);
 
-canvas {
-    border: 1px solid black;
-    position: relative;
-}
 
-header {
-    background-color: orange;
-    height: 100px;
-}
+/* BASICS */
 
-img {
-    width: 200px;
-}
+@import url(basics/base.css);
+@import url(basics/layout.css);
+@import url(basics/helpers.css);
 
-.edit-side {
-    position: relative;
-    width: 500px;
-    height: 500px;
-}
-
-.container-text div {
-    height: 30px;
-    width: 300px;
-    /* background: blue; */
-    position: absolute;
-    top: 30px;
-    left: 50%;
-    translate: -50%;
-    border: 1px black solid;
-}
-
-.control-box img {
-    width: 20px;
-}
-
-.flex {
-    display: flex;
-}
+/* COMPONENTS */
+@import url(components/header.css);
+@import url(components/gallery.css);
+@import url(components/editor.css);
+@import url(components/saveMemes.css);

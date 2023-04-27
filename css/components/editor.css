@@ -1,0 +1,66 @@
+.control-box img {
+    width: 20px;
+}
+
+.main-editor {
+    display: flex;
+    justify-content: space-around;
+}
+
+.main-editor .control-box {
+    display: grid;
+    grid-template-columns: repeat(5, 60px);
+    grid-template-rows: repeat(5, 60px);
+    gap: 20px ;
+    row-gap: 40xp;
+}
+
+.main-editor .control-box .text-input {
+    grid-column: 1 / -1;
+}
+
+.main-editor .control-box .change-line-btn {
+    grid-area: 2/ 2 / 3 / 3;
+}
+
+.main-editor .control-box .add-line-btn {
+    grid-area: 2 / 3 / 3/ 4;
+}
+
+.main-editor .control-box .delete-line-btn {
+    grid-area: 2 /4 / 3 / 5;
+}
+
+.main-editor .control-box .increase-font-btn {
+    grid-area: 3 / 1 / 4 /2;
+}
+
+.main-editor .control-box .decrease-font-btn {
+    grid-area: 3 / 2 / 4 / 3;
+}
+
+.main-editor .control-box .align-left-btn {
+    grid-area: 3 / 3/ 4 / 4;
+}
+
+.main-editor .control-box .align-center-btn {
+    grid-area: 3 / 4 / 4 / 5;
+}
+
+.main-editor .control-box .align-right-btn {
+    grid-area: 3 / 5 /4/ 6;
+}
+
+.main-editor .control-box .stroke-color-input {
+    grid-area: 4 / 4 / 5/ 5;
+    /* opacity: 0; */
+}
+
+.main-editor .control-box .fill-color-input {
+    grid-area: 4 / 5 / 5 / 6;
+    /* opacity: 0; */
+}
+
+.main-editor .control-box .font-family-input {
+    grid-column: 4 / 1 / 5 / 4;
+}

@@ -14,29 +14,24 @@ function onInit() {
 
 function renderEditor() {
     let strHTML = `
-        <div class="edit-side">
+    <div class="main-editor">
 
         <div class="canvas-container">
         <canvas id="canvas" height="500" width="500"></canvas>
         </div>
 
-        <div class="container-text">
-
-        </div>
-
-        </div>
 
         <div class="control-box">
         <input class="text-input" type="text" placeholder="Enter a text..." value=""
         oninput="onChangeText(value)" />
-        <button onclick="onChangeLine()"><img src="icons/up-and-down-opposite-double-arrows-side-by-side.png"></button>
-        <button onclick="onAddTextLine()"><img src="icons/add.png"></button>
-        <button onclick="onDeleteLine()"><img src="icons/trash.png"></button>
-        <button onclick="onChangeFontSize(2)" ><img src="icons/increase font - icon.png"></button>
-        <button onclick="onChangeFontSize(-2)" ><img src="icons/decrease font - icon.png"></button>
-        <button name="end" onclick="onChangeAlign(name)"><img src="icons/align-to-left.png"></button>
-        <button name="center" onclick="onChangeAlign(name)"><img src="icons/center-text-alignment.png"></button>
-        <button name="start" onclick="onChangeAlign(name)"><img src="icons/align-to-right.png"></button>
+        <button class="change-line-btn" onclick="onChangeLine()"><img src="icons/up-and-down-opposite-double-arrows-side-by-side.png"></button>
+        <button class="add-line-btn" onclick="onAddTextLine()"><img src="icons/add.png"></button>
+        <button class="delete-line-btn" onclick="onDeleteLine()"><img src="icons/trash.png"></button>
+        <button class="increase-font-btn" onclick="onChangeFontSize(2)" ><img src="icons/increase font - icon.png"></button>
+        <button class="decrease-font-btn" onclick="onChangeFontSize(-2)" ><img src="icons/decrease font - icon.png"></button>
+        <button class="align-left-btn" name="end" onclick="onChangeAlign(name)"><img src="icons/align-to-left.png"></button>
+        <button class="align-center-btn" name="center" onclick="onChangeAlign(name)"><img src="icons/center-text-alignment.png"></button>
+        <button class="align-right-btn" name="start" onclick="onChangeAlign(name)"><img src="icons/align-to-right.png"></button>
         <button>
         <img src="icons/text stroke.png">
         <input class="stroke-color-input" type="color" value="#000000" oninput="onChangeStrokeColor(value)">
@@ -45,14 +40,16 @@ function renderEditor() {
          <img src="icons/paint-board-and-brush.png">
          <input class="fill-color-input" type="color" value="#ffffff" oninput="onChangeFillColor(value)">
          </button>
-        <select class="font-family-input" class="font-family" name="font-family" oninput="onChangeFontFamily(value)">
+        <select class="font-family-input" name="font-family" oninput="onChangeFontFamily(value)">
         <option value="font"> Impact</option>
         <option value="Arial">Arial</option>
         <option value="Tohama">Tohama</option>
         </select>
         <button><a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download as jpeg</a></button>
-        <button>Share</button>
+        <button onclick="onUploadImg()">Share</button>
         <button onclick="onSaveMeme()" >Save</button>
+        </div>
+
         </div>
         `
     const elMain = document.querySelector('.main')
@@ -295,7 +292,7 @@ function onDownloadImg(elLink) {
     const imgContent = gCanvas.toDataURL('image/jpeg') // image/jpeg the default format
     elLink.href = imgContent
 }
- 
+
 function onSaveMeme() {
     saveMeme()
 }

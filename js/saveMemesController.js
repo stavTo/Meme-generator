@@ -1,8 +1,8 @@
 'use strict'
 
 function renderSaveMames() {
-    const savedMemes = loadFromStorage(KEY_MEMES)
-    if (!savedMemes) return
+    let savedMemes = loadFromStorage(KEY_MEMES)
+    if (!savedMemes) savedMemes = getSaveMemes()
     let strHTML = savedMemes.map(meme => 
         `
         <div>

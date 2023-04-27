@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: montserrat-regular, serif;
+    color: var(--clr1);
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+}
+
+main {
+    background-color: var(--clr4);
+}
+
+canvas {
+    border: 1px solid black;
+    position: relative;
+}
+
