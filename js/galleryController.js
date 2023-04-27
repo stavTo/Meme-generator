@@ -16,5 +16,6 @@ function renderGallery() {
 function onImgSelect(elImg) {
     const imgId = elImg.dataset.id
     setImg(imgId)
+    resetGMeme(imgId)
     renderEditor()
 }
