@@ -1,0 +1,29 @@
+
+.saved-meme-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    
+}
+
+.card {
+    position: relative;
+    margin-block-start: 80px;
+    margin-block-end: 80px;
+}
+
+.card .toolbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-block-start: 8px;
+
+}
+
+
+.toolbar .icon {
+    cursor: pointer;
+    scale: 1.5;
+    color: var(--clr3);
+}
+

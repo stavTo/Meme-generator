@@ -1,0 +1,20 @@
+.main-footer {
+    background-color: var(--clr3);
+    height: 200px;
+    width: 100%;
+    /* position: absolute; */
+    /* bottom: 0; */
+    /* z-index: -10; */
+}
+
+.main-footer img {
+    width: 133px;
+    height: 22px;
+    margin: auto;
+}
+
+.main-footer small {
+    font-size: 1rem;
+    font-family: montserrat-thin;
+    margin: auto;
+}

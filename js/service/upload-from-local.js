@@ -10,15 +10,16 @@ function loadImageFromInput(ev, onImageReady) {
     reader.onload = function (event) {
         let img = new Image() // Create a new html img element
         img.src = event.target.result // Set the img src to the img file we read
+
         // Run the callBack func, To render the img on the canvas
-        img.onload = onImageReady.bind(null, img)
+        // img.onload = onImageReady.bind(null, img)
         // Can also do it this way:
-        // img.onload = () => onImageReady(img)
+        img.onload = () => onImageReady(img)
     }
     reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
 }
 
 function renderImg(img) {
     // Draw the img on the canvas
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
 }

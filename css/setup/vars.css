@@ -1,5 +1,15 @@
-
 :root {
+
+    
+	--grid-size: max-content;
+
+    --layout-padding: 1.25rem;
+    --site-width: max-content;
+
+    --l: 980px;
+    --m: 820px;
+    --s: 600px;
+
     --clr1: #ffffff;
     --clr2: #040a2c;
     --clr3: #ff7f00;

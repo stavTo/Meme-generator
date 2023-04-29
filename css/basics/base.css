@@ -11,15 +11,55 @@ html {
 body {
     margin: 0;
     padding: 0;
+    flex-direction: column;
+    height: 100%;
+}
 
+.main-screen {
+	cursor: pointer;
+	position: fixed;
+	top: 65px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	opacity: 0;
+	pointer-events: none;
+}
+
+body.menu-open .main-screen.menu-background {
+	pointer-events: auto;
+	opacity: 1;
 }
 
 main {
     background-color: var(--clr4);
+    height: 100%;
 }
+
+/* .canvas-container {
+    width: 50%;
+    height: 50%;
+  } */
 
 canvas {
     border: 1px solid black;
     position: relative;
+    margin-block: 50px
 }
 
+.text-input {
+    padding: 7px;
+    font-size: 18px;
+    border-width: 0px;
+    border-color: #0d0f11;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-style: solid;
+    border-radius: 50px;
+    box-shadow: -1px 0px 5px rgba(66, 66, 66, .75);
+}
+
+.text-input:focus {
+    outline: none;
+}

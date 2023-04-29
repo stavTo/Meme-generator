@@ -2,21 +2,49 @@
     width: 20px;
 }
 
+
+
 .main-editor {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .main-editor .control-box {
     display: grid;
     grid-template-columns: repeat(5, 60px);
-    grid-template-rows: repeat(5, 60px);
-    gap: 20px ;
-    row-gap: 40xp;
+    grid-template-rows: repeat(6, 60px);
+    gap: 15px ;
+    /* row-gap: 40xp; */
+    margin-block: auto;
+}
+
+.main-editor .control-box button > img {
+    border-radius: 0;
+    width: 70%;
+}
+
+.main-editor .control-box button > i {
+    font-size: 40px;
+}
+.main-editor .control-box button a > i {
+    font-size: 40px;
+
+}
+
+.main-editor .control-box select {
+    border-radius: 22px;
+    text-align: center;
+    font-size: large;
+}
+
+.main-editor .control-box button {
+    border-radius: 12px;
+    position: relative;
 }
 
 .main-editor .control-box .text-input {
-    grid-column: 1 / -1;
+    grid-area: 1 / 1 / 2 / 6;
 }
 
 .main-editor .control-box .change-line-btn {
@@ -28,7 +56,7 @@
 }
 
 .main-editor .control-box .delete-line-btn {
-    grid-area: 2 /4 / 3 / 5;
+    grid-area: 2 / 4 / 3 / 5;
 }
 
 .main-editor .control-box .increase-font-btn {
@@ -40,7 +68,7 @@
 }
 
 .main-editor .control-box .align-left-btn {
-    grid-area: 3 / 3/ 4 / 4;
+    grid-area: 3 / 3 / 4 / 4;
 }
 
 .main-editor .control-box .align-center-btn {
@@ -48,19 +76,52 @@
 }
 
 .main-editor .control-box .align-right-btn {
-    grid-area: 3 / 5 /4/ 6;
+    grid-area: 3 / 5 / 4/ 6;
 }
 
-.main-editor .control-box .stroke-color-input {
+
+
+.main-editor .control-box .font-family-input {
+    grid-area: 4 / 1 / 5 / 4;
+}
+
+.main-editor .control-box .stroke-clr-btn {
     grid-area: 4 / 4 / 5/ 5;
-    /* opacity: 0; */
+}
+
+.main-editor .control-box .fill-clr-btn {
+    grid-area: 4 / 5 / 5 / 6;
 }
 
 .main-editor .control-box .fill-color-input {
-    grid-area: 4 / 5 / 5 / 6;
-    /* opacity: 0; */
+    opacity: 0;  
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
 }
 
-.main-editor .control-box .font-family-input {
-    grid-column: 4 / 1 / 5 / 4;
+.main-editor .control-box .stroke-color-input {
+    opacity: 0;  
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;}
+
+
+
+.main-editor .control-box .download-btn {
+    grid-area: 5 / 4 / 6 / 5;
 }
+.main-editor .control-box .share-facebook-btn {
+    grid-area: 5 / 1 / 6 / 2;
+}
+.main-editor .control-box .share-whatsapp-btn {
+    grid-area: 5 / 2 / 6 / 3;
+}
+.main-editor .control-box .save-btn {
+    grid-area: 5 / 5 / 6 / 6;
+}
+
+
+

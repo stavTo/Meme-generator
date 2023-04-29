@@ -41,4 +41,16 @@ function doUploadImg(imgDataUrl, onSuccess) {
 }
 
 
-
+// function shareWhatsApp(shareButton) {
+//     shareButton.addEventListener('click', async () => {
+//         try {
+//             await navigator.share({
+//                 title: 'Shared content title',
+//                 text: 'Shared content description',
+//                 url: 'https://example.com/shared-content',
+//             });
+//         } catch (error) {
+//             console.error('Error sharing content:', error);
+//         }
+//     });
+// }

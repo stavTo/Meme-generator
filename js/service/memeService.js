@@ -13,7 +13,7 @@ const getDefaultLine = () => ({
     isDrag: false
 })
 
-let gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+let gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'child': 2, 'movie': 4, 'president': 10, 'dog': 8 }
 
 let gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['president', 'trump'] },
@@ -27,7 +27,7 @@ let gImgs = [
     { id: 9, url: 'img/9.jpg', keywords: ['child', 'laughing'] },
     { id: 10, url: 'img/10.jpg', keywords: ['president', 'laughing'] },
     { id: 11, url: 'img/11.jpg', keywords: ['sport', 'kissing'] },
-    { id: 12, url: 'img/12.jpg', keywords: ['pointed', 'cat'] },
+    { id: 12, url: 'img/12.jpg', keywords: ['pointed', 'serious'] },
     { id: 13, url: 'img/13.jpg', keywords: ['cheers', 'drinks'] },
     { id: 14, url: 'img/14.jpg', keywords: ['movie', 'cat'] },
     { id: 15, url: 'img/15.jpg', keywords: ['exactly', 'movie'] },
@@ -35,14 +35,18 @@ let gImgs = [
     { id: 17, url: 'img/17.jpg', keywords: ['president', 'cool'] },
     { id: 18, url: 'img/18.jpg', keywords: ['funny', 'animation'] },
 ]
-let savedMemes = []
-let gFilter = ''
+let gFilter = null
 
 let gMeme = {
     selectedImgId: 5,
     selectedLineIdx: 0,
+    isReEdit: false,
     lines: [getDefaultLine()]
 }
+
+let savedMemes
+
+
 
 function resetGMeme(imgId) {
     gMeme = {
@@ -58,18 +62,23 @@ function getMeme() {
 }
 
 function getImgs() {
-    // console.log(gFilter)
-    // const imgs = gImgs.filter(img => {
-    //     img.keywords.some(keyword => {
-    //         keyword.toLowerCase().includes(gFilter.toLowerCase())
-    //     }
-    //     )
-    // })
-    // console.log(imgs)
-    return gImgs
+    if (!gFilter) {
+        return gImgs
+    } else {
+        const imgs = gImgs.filter(img => img.keywords.includes(gFilter.toLowerCase()))
+        gFilter = null
+        return imgs
+    }
 }
 
+
+
 function getSaveMemes() {
+    savedMemes = loadFromStorage(KEY_MEMES)
+    if (!savedMemes || !savedMemes.length) {
+        savedMemes = []
+    }
+
     return savedMemes
 }
 
@@ -148,10 +157,33 @@ function setLinePos(idx, pos) {
 }
 
 function saveMeme() {
-    savedMemes.push({ ...gMeme })
+    if (gMeme.isReEdit) {
+        savedMemes.splice(gCurrMemeIdx, 1)
+    }
+    gMeme.isReEdit = true
+    savedMemes.unshift({ ...gMeme })
     saveToStorage(KEY_MEMES, savedMemes)
+}
+
+function deleteSavedMeme(idx) {
+    savedMemes.splice(idx, 1)
+    saveToStorage(KEY_MEMES, savedMemes)
+
 }
 
 function setFilterBy(keywords) {
     gFilter = keywords
+}
+
+function updategMemeFromSaved(savedMemeIdx) {
+    gMeme = savedMemes[savedMemeIdx]
+}
+
+function updategMemeFlexibleMode(randomMeme) {
+    gMeme = randomMeme
+}
+
+function changeKeywordCountMap(value) {
+    gKeywordSearchCountMap[value]++
+    console.log(gKeywordSearchCountMap)
 }

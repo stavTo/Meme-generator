@@ -1,29 +1,52 @@
 'use stirct'
 
+function onToggleMenu() {
+    document.body.classList.toggle('menu-open');
+    const elBtn = document.querySelector('.menu-button');
+    elBtn.innerText = elBtn.innerText === '☰' ? 'X' : '☰';
+}
 
 function renderGallery() {
     const imgs = getImgs()
     let strHTML = `
-    <section class="filter">
+    <section class="filter flex full">
 
-    <input type="text" data-trans="by-title" placeholder="Enter meme title" name="by-title" 
-    oninput="onSetFilterByTitle(this)"/>
+    <div class="section-container flex space-between align-center">
+    <input list="keyword" class="text-input" type="text" data-trans="by-title" placeholder="Enter meme title" name="by-title" 
+    onchange="onSetFilterByTitle(value)"/>
+    <datalist id="keyword">
+    <option value="President">
+    <option value="Cat">
+    <option value="Child">
+     <option value="Funny">
+     <option value="Dog">
+    </datalist>
 
-    <div class="popular-words">
-    
     </div>
+    <div class="popular-words flex">
+    <ul class="clean-list flex">
+    <li onclick="onChangeFontSizePopularWords(null)" value="All">All</li>
+    <li onclick="onChangeFontSizePopularWords(this,'funny')" value="funny">Funny</li>
+    <li onclick="onChangeFontSizePopularWords(this,'cat')" value="cat">Cat</li>
+    <li onclick="onChangeFontSizePopularWords(this,'dog')" value="dogs">Dogs</li>
+    <li onclick="onChangeFontSizePopularWords(this,'president')" value="president">President</li>
+    <li onclick="onChangeFontSizePopularWords(this,'child')" value="childs">Childs</li>
+    <li onclick="onChangeFontSizePopularWords(this,'movie')" value="movie">Movie</li>
+    </ul>
+    </div>
+
     </section>
     <div class="gallery-container">
-    <div>
-    <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
-    <img src="icons/add.png"">
-    </div>
+    <article>
+    <button onclick="onFlexibleMode()" class="flexible-btn">Im Flexible </button>
+    </article>
+
     `
     strHTML += imgs.map(img => `
-        <div>
+        <article>
         <img data-id="${img.id}" src="img/${img.id}.jpg" alt="" onclick="onImgSelect(this)">
-        </div>
-   ` )
+        </article>
+   ` ).join('')
     const elMain = document.querySelector('.main')
     elMain.innerHTML = strHTML + `</div>`
     elMain.classList.add('gallery')
@@ -36,9 +59,30 @@ function onImgSelect(elImg) {
     renderEditor()
 }
 
-function onSetFilterByTitle(elInput) {
-    const keywords = elInput.value
+function onSetFilterByTitle(value) {
+    const keywords = value
     setFilterBy(keywords)
-    // renderGallery()
-
+    renderGallery()
 }
+
+function onFlexibleMode() {
+    const randomMeme = getMeme()
+    randomMeme.selectedImgId = getRandomInt(0, 17)
+    randomMeme.lines[0].txt = gRandomTexts[getRandomInt(0,5)]
+    randomMeme.lines[0].strokeColor = getRandomColor()
+    randomMeme.lines[0].fillColor = getRandomColor()
+    randomMeme.lines[0].size = getRandomInt(20, 70)
+
+    updategMemeFlexibleMode(randomMeme)
+    renderEditor()
+}
+
+function onChangeFontSizePopularWords(elWord , value) {
+    onSetFilterByTitle(value)
+    changeKeywordCountMap(value)
+    
+    // elWord.style.fontSize = gKeywordSearchCountMap[value]
+    // renderGallery()
+}
+
+

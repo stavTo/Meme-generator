@@ -1,13 +1,18 @@
 
 .gallery-container {
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
+    gap: 20px; */
+    display: grid;
+    grid-template-columns: repeat( auto-fill, minmax(300px, 1fr) );
     gap: 20px;
 }
 
-.gallery img {
-    width: 200px;
+.gallery img  {
+    width: 300px;
+    border-radius: 20px;
 }
+
 
 .gallery section {
     height: 100px;

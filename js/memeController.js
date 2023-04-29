@@ -3,6 +3,7 @@
 let gCanvas
 let gCtx
 let gStartPos
+let draw_rect = true
 
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
@@ -32,22 +33,25 @@ function renderEditor() {
         <button class="align-left-btn" name="end" onclick="onChangeAlign(name)"><img src="icons/align-to-left.png"></button>
         <button class="align-center-btn" name="center" onclick="onChangeAlign(name)"><img src="icons/center-text-alignment.png"></button>
         <button class="align-right-btn" name="start" onclick="onChangeAlign(name)"><img src="icons/align-to-right.png"></button>
-        <button>
+        <button class="stroke-clr-btn">
         <img src="icons/text stroke.png">
         <input class="stroke-color-input" type="color" value="#000000" oninput="onChangeStrokeColor(value)">
         </button>
-         <button>
+         <button class="fill-clr-btn">
          <img src="icons/paint-board-and-brush.png">
          <input class="fill-color-input" type="color" value="#ffffff" oninput="onChangeFillColor(value)">
          </button>
         <select class="font-family-input" name="font-family" oninput="onChangeFontFamily(value)">
-        <option value="font"> Impact</option>
+        <option value="impact"> Impact</option>
         <option value="Arial">Arial</option>
         <option value="Tohama">Tohama</option>
         </select>
-        <button><a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download as jpeg</a></button>
-        <button onclick="onUploadImg()">Share</button>
-        <button onclick="onSaveMeme()" >Save</button>
+        
+        <button class="download-btn"><a href="#" onclick="onDownloadImg(this)" download="my-img.jpg"><i class="fa-solid fa-download" style="color: #47a6ff;"></i></a></button>
+        <button class="share-facebook-btn" onclick="onUploadImg()"><i class="fa-brands fa-facebook" style="color: #0d47ab;"></i></button>
+        <button class="share-whatsapp-btn" onclick="shareWhatsApp(this)"><i class="fa-brands fa-whatsapp" style="color: #32bd00;"></i></button>
+        <button class="save-btn" onclick="onSaveMeme()" ><i class="fa-solid fa-floppy-disk" style="color: #ffa200;"></i></button>
+       
         </div>
 
         </div>
@@ -56,13 +60,10 @@ function renderEditor() {
     elMain.innerHTML = strHTML
     gCanvas = document.querySelector('#canvas')
     gCtx = gCanvas.getContext('2d')
+    // resizeCanvas()
     renderMeme()
 
 }
-
-// function clearCanvas() {
-//     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
-//   }
 
 
 function renderMeme() {
@@ -70,10 +71,12 @@ function renderMeme() {
     const img = new Image()
     img.src = currImg.url
     img.onload = () => {
-        // resizeCanvas(img)
+        // resizeCanvas()
         renderBgImg(img)
         drawText()
-        drawRect(getCurrLine())
+        if (draw_rect) {
+            drawRect(getCurrLine())
+        }
         addListeners()
     }
 
@@ -87,6 +90,14 @@ function renderControlBox(line) {
     renderMeme()
 }
 
+function resizeCanvas() {
+    const elContainer = document.querySelector('.canvas-container')
+    gCanvas.width = elContainer.offsetWidth
+    gCanvas.height = elContainer.offsetHeight
+    // const currImg = getCurrImg()
+    // const img = new Image()
+    // img.src = currImg.url
+}
 
 function drawText() {
     const lines = getMeme().lines
@@ -209,10 +220,10 @@ function calcTextBox(line) {
 
 function addListeners() {
     addMouseListeners()
-    // addTouchListeners()
+    addTouchListeners()
     // Listen for resize ev
     window.addEventListener('resize', () => {
-        onInit()
+        // resizeCanvas()
     })
 }
 
@@ -229,9 +240,9 @@ function addMouseListeners() {
 }
 
 function addTouchListeners() {
-    gCanvas.addEventListener('touchstart', onDown)
-    gCanvas.addEventListener('touchmove', onMove)
-    gCanvas.addEventListener('touchend', onUp)
+    gCanvas.addEventListener('touchstart', onDown, { passive: false })
+    gCanvas.addEventListener('touchmove', onMove, { passive: false })
+    gCanvas.addEventListener('touchend', onUp, { passive: false })
 }
 
 function onDown(ev) {
@@ -289,8 +300,17 @@ function getEvPos(ev) {
 
 function onDownloadImg(elLink) {
     // need to remove the rect
-    const imgContent = gCanvas.toDataURL('image/jpeg') // image/jpeg the default format
-    elLink.href = imgContent
+    draw_rect = false
+    renderMeme()
+    setTimeout(() => {
+        const imgContent = gCanvas.toDataURL('image/jpeg')
+        elLink.href = imgContent
+    }, 1000);
+    setTimeout(() => {
+        draw_rect = true
+        renderMeme()
+    }, 2000);
+
 }
 
 function onSaveMeme() {

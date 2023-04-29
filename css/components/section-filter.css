@@ -1,0 +1,24 @@
+
+.gallery section {
+    justify-content: space-around;
+}
+
+section.filter {
+    background-color: #ffffff;
+    height: 110px;
+
+}
+
+section .popular-words {
+    align-items: center;
+
+}
+
+section .popular-words ul {
+    color: black;
+    justify-content: space-between;
+}
+
+section .popular-words ul > li {
+    margin-inline: 20px;
+}

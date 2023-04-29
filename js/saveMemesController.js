@@ -1,14 +1,36 @@
 'use strict'
 
+let gCurrMemeIdx = null
+
 function renderSaveMames() {
-    let savedMemes = loadFromStorage(KEY_MEMES)
-    if (!savedMemes) savedMemes = getSaveMemes()
-    let strHTML = savedMemes.map(meme => 
+    let savedMemes = getSaveMemes()
+    let strHTML = savedMemes.map((meme, idx) =>
         `
-        <div>
+        <article class="card">
         <img src="img/${meme.selectedImgId}.jpg" alt="" onclick="">
-        </div>
-   `)
+        <div class="toolbar">
+                <i data-idx="${idx}" onclick="onReEditSaveMeme(this)" class="icon fa-solid fa-pen-to-square"></i>
+                <i data-idx="${idx}" onclick="onDeleteSaveMeme(this)" class="icon fa-solid fa-trash"></i>
+                <a href="#" onclick="onDownloadImg(this)" download="my-img.jpg"><i data-idx="${idx}" class="icon fa-solid fa-download"></i></a>
+            </div>
+        </article>
+   `).join('')
+    if (!strHTML.length) {
+        strHTML = `There are no saved memes yet `
+    }
     const elMain = document.querySelector('.main')
-    elMain.innerHTML = strHTML.join('')
+    elMain.innerHTML = `<div class="saved-meme-container">` +
+        strHTML + `</div>`
+}
+
+function onDeleteSaveMeme(elMeme) {
+    const savedMemeIdx = elMeme.dataset.idx
+    deleteSavedMeme(savedMemeIdx)
+    renderSaveMames()
+}
+function onReEditSaveMeme(elMeme) {
+    const savedMemeIdx = elMeme.dataset.idx
+    updategMemeFromSaved(savedMemeIdx)
+    gCurrMemeIdx = savedMemeIdx
+    renderEditor()
 }
