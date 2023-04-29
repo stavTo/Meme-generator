@@ -7,7 +7,7 @@ function renderSaveMames() {
     let strHTML = savedMemes.map((meme, idx) =>
         `
         <article class="card">
-        <img src="img/${meme.selectedImgId}.jpg" alt="" onclick="">
+        <img src="${getImgById(meme.selectedImgId).url}" alt="" onclick="">
         <div class="toolbar">
                 <i data-idx="${idx}" onclick="onReEditSaveMeme(this)" class="icon fa-solid fa-pen-to-square"></i>
                 <i data-idx="${idx}" onclick="onDeleteSaveMeme(this)" class="icon fa-solid fa-trash"></i>
@@ -16,7 +16,7 @@ function renderSaveMames() {
         </article>
    `).join('')
     if (!strHTML.length) {
-        strHTML = `There are no saved memes yet `
+        strHTML = `<h1> There are no saved memes yet <h1> `
     }
     const elMain = document.querySelector('.main')
     elMain.innerHTML = `<div class="saved-meme-container">` +

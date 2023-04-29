@@ -3,13 +3,17 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    padding: 40px;
+    color: black;
+    /* font-size: 3rem; */
+    text-align: center;
     
 }
 
+
 .card {
     position: relative;
-    margin-block-start: 80px;
-    margin-block-end: 80px;
+    
 }
 
 .card .toolbar {

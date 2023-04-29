@@ -2,8 +2,6 @@
     width: 20px;
 }
 
-
-
 .main-editor {
     display: flex;
     flex-wrap: wrap;
@@ -41,6 +39,13 @@
 .main-editor .control-box button {
     border-radius: 12px;
     position: relative;
+    cursor: pointer;
+}
+
+.main-editor .control-box input {
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
 }
 
 .main-editor .control-box .text-input {

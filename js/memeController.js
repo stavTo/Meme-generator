@@ -42,9 +42,9 @@ function renderEditor() {
          <input class="fill-color-input" type="color" value="#ffffff" oninput="onChangeFillColor(value)">
          </button>
         <select class="font-family-input" name="font-family" oninput="onChangeFontFamily(value)">
-        <option value="impact"> Impact</option>
+        <option value="Impact"> Impact</option>
         <option value="Arial">Arial</option>
-        <option value="Tohama">Tohama</option>
+        <option value="Tahoma">Tahoma</option>
         </select>
         
         <button class="download-btn"><a href="#" onclick="onDownloadImg(this)" download="my-img.jpg"><i class="fa-solid fa-download" style="color: #47a6ff;"></i></a></button>
@@ -60,7 +60,6 @@ function renderEditor() {
     elMain.innerHTML = strHTML
     gCanvas = document.querySelector('#canvas')
     gCtx = gCanvas.getContext('2d')
-    // resizeCanvas()
     renderMeme()
 
 }
@@ -71,7 +70,7 @@ function renderMeme() {
     const img = new Image()
     img.src = currImg.url
     img.onload = () => {
-        // resizeCanvas()
+        resizeCanvas()
         renderBgImg(img)
         drawText()
         if (draw_rect) {
@@ -93,10 +92,8 @@ function renderControlBox(line) {
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gCanvas.width = elContainer.offsetWidth
-    gCanvas.height = elContainer.offsetHeight
-    // const currImg = getCurrImg()
-    // const img = new Image()
-    // img.src = currImg.url
+    gCanvas.height =  gCanvas.width
+    
 }
 
 function drawText() {
@@ -222,9 +219,9 @@ function addListeners() {
     addMouseListeners()
     addTouchListeners()
     // Listen for resize ev
-    window.addEventListener('resize', () => {
-        // resizeCanvas()
-    })
+    // window.addEventListener('resize', () => {
+    //     resizeCanvas()
+    // })
 }
 
 function changeSelectedLineByClick() {
@@ -266,7 +263,7 @@ function onMove(ev) {
 
 function onUp() {
     setLineDrag(false)
-    document.body.style.cursor = 'grab'
+    document.body.style.cursor = 'default'
 }
 
 function isLineClicked(clickedPos) {

@@ -1,6 +1,6 @@
-
 .gallery section {
     justify-content: space-around;
+    align-items: center;
 }
 
 section.filter {
@@ -17,8 +17,40 @@ section .popular-words {
 section .popular-words ul {
     color: black;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-section .popular-words ul > li {
+section .popular-words ul>li {
     margin-inline: 20px;
+    cursor: pointer;
+}
+
+section button {
+    background-color: var(--clr3);
+    cursor: pointer;
+    color: #ffffff;
+    padding: 6px 24px;
+    border-radius: 13px;
+    border: 2px solid var(--clr1);
+    font-size: 1.2rem;
+    height: 40px;
+    width: 150px;
+
+}
+
+section input::file-selector-button {
+    background-color: var(--clr3);
+    cursor: pointer;
+    color: #ffffff;
+    padding: 6px 24px;
+    border-radius: 13px;
+    border: 2px solid var(--clr1);
+    font-size: 1.2rem;
+    height: 40px;
+    width: 150px;
+
+}
+
+.container-gallery-btn {
+    /* padding-inline-start: 80px; */
 }

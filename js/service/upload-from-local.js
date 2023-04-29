@@ -1,8 +1,3 @@
-// The next 2 functions handle IMAGE UPLOADING to img tag from file system:
-function onImgInput(ev) {
-    loadImageFromInput(ev, renderImg)
-}
-
 // CallBack func will run on success load of the img
 function loadImageFromInput(ev, onImageReady) {
     const reader = new FileReader()
@@ -19,7 +14,3 @@ function loadImageFromInput(ev, onImageReady) {
     reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
 }
 
-function renderImg(img) {
-    // Draw the img on the canvas
-    gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
-}

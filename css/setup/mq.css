@@ -1,5 +1,9 @@
 @media (max-width: 640px) {
 
+    section.filter {
+        height: 250px;
+
+    }
 
     .card {
         position: relative;
@@ -17,8 +21,9 @@
 
 
     .logo {
-        position: fixed;
+        position: absolute;
         left: 15px;
+        top: 25px;
     }
 
     header ul {
@@ -70,7 +75,7 @@
         color: white;
         background-color: inherit;
         border: none;
-        position: fixed;
+        position: absolute;
         top: 20px;
         right: 10px;
     }

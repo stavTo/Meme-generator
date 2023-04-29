@@ -34,17 +34,17 @@ function renderGallery() {
     <li onclick="onChangeFontSizePopularWords(this,'movie')" value="movie">Movie</li>
     </ul>
     </div>
-
+    <div class="container-gallery-btn flex">
+    <button onclick="onFlexibleMode()" class="flexible-btn">Im Flexible </button>
+    <input type="file" onchange="onAddCustomImg(event)">upload Image</button>
+    <div>
     </section>
     <div class="gallery-container">
-    <article>
-    <button onclick="onFlexibleMode()" class="flexible-btn">Im Flexible </button>
-    </article>
 
     `
     strHTML += imgs.map(img => `
         <article>
-        <img data-id="${img.id}" src="img/${img.id}.jpg" alt="" onclick="onImgSelect(this)">
+        <img data-id="${img.id}" src="${img.url}" alt="" onclick="onImgSelect(this)">
         </article>
    ` ).join('')
     const elMain = document.querySelector('.main')
@@ -85,4 +85,12 @@ function onChangeFontSizePopularWords(elWord , value) {
     // renderGallery()
 }
 
+function onImgReady(img) {
+    addImg(img)
+    renderGallery()
+}
+
+function onAddCustomImg(ev) {
+    loadImageFromInput(ev, onImgReady)
+}
 

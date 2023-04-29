@@ -1,0 +1,17 @@
+
+
+.main-about {
+    margin-block: 50px;
+    text-align: center;
+}
+
+.main-about p {
+    color: var(--clr2);
+}
+.main-about h3 {
+    color: var(--clr2);
+}
+.main-about img {
+border-radius: 50px;
+}
+

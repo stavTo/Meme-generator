@@ -1,10 +1,7 @@
 .main-footer {
     background-color: var(--clr3);
-    height: 200px;
+    height: 100px;
     width: 100%;
-    /* position: absolute; */
-    /* bottom: 0; */
-    /* z-index: -10; */
 }
 
 .main-footer img {
