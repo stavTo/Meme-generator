@@ -1,11 +1,12 @@
 .gallery section {
     justify-content: space-around;
-    align-items: center;
+    align-items: start;
 }
 
 section.filter {
     background-color: #ffffff;
     height: 110px;
+    justify-content: space-evenly;
 
 }
 
@@ -52,5 +53,5 @@ section input::file-selector-button {
 }
 
 .container-gallery-btn {
-    /* padding-inline-start: 80px; */
+flex-direction: column;
 }

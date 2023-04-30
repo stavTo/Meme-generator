@@ -7,7 +7,7 @@ function renderSaveMames() {
     let strHTML = savedMemes.map((meme, idx) =>
         `
         <article class="card">
-        <img src="${getImgById(meme.selectedImgId).url}" alt="" onclick="">
+        <img src="${meme.imgUrl}" alt="" onclick="">
         <div class="toolbar">
                 <i data-idx="${idx}" onclick="onReEditSaveMeme(this)" class="icon fa-solid fa-pen-to-square"></i>
                 <i data-idx="${idx}" onclick="onDeleteSaveMeme(this)" class="icon fa-solid fa-trash"></i>
@@ -24,6 +24,7 @@ function renderSaveMames() {
 }
 
 function onDeleteSaveMeme(elMeme) {
+    flashMsg('meme deleted')
     const savedMemeIdx = elMeme.dataset.idx
     deleteSavedMeme(savedMemeIdx)
     renderSaveMames()

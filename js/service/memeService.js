@@ -168,7 +168,8 @@ function setLinePos(idx, pos) {
     gMeme.lines[idx].pos = pos
 }
 
-function saveMeme() {
+function saveMeme(imgUrl) {
+    gMeme.imgUrl = imgUrl
     if (gMeme.isReEdit) {
         savedMemes.splice(gCurrMemeIdx, 1)
     }

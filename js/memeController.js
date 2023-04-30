@@ -11,6 +11,7 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 function onInit() {
 
     renderGallery()
+
 }
 
 function renderEditor() {
@@ -61,6 +62,7 @@ function renderEditor() {
     gCanvas = document.querySelector('#canvas')
     gCtx = gCanvas.getContext('2d')
     renderMeme()
+    addListeners()
 
 }
 
@@ -70,13 +72,12 @@ function renderMeme() {
     const img = new Image()
     img.src = currImg.url
     img.onload = () => {
-        resizeCanvas()
+        // resizeCanvas()
         renderBgImg(img)
         drawText()
         if (draw_rect) {
             drawRect(getCurrLine())
         }
-        addListeners()
     }
 
 }
@@ -237,14 +238,16 @@ function addMouseListeners() {
 }
 
 function addTouchListeners() {
-    gCanvas.addEventListener('touchstart', onDown, { passive: false })
-    gCanvas.addEventListener('touchmove', onMove, { passive: false })
-    gCanvas.addEventListener('touchend', onUp, { passive: false })
+    gCanvas.addEventListener('touchstart', onDown)
+    gCanvas.addEventListener('touchmove', onMove)
+    gCanvas.addEventListener('touchend', onUp)
 }
 
 function onDown(ev) {
     const pos = getEvPos(ev)
+    console.log(pos)
     if (!isLineClicked(pos)) return
+    console.log('hvvvvv')
     setLineDrag(true)
     gStartPos = pos
     document.body.style.cursor = 'grabbing'
@@ -252,6 +255,7 @@ function onDown(ev) {
 
 function onMove(ev) {
     const { isDrag } = getCurrLine()
+    // console.log(isDrag)
     if (!isDrag) return
     const pos = getEvPos(ev)
     const dx = pos.x - gStartPos.x
@@ -267,11 +271,19 @@ function onUp() {
 }
 
 function isLineClicked(clickedPos) {
+    
+    console.log('hee')
     const selectedLineIdx = getMeme().lines.findIndex((line) => {
+        console.log(line)
         const { x, y, width, height } = calcTextBox(line)
-        return clickedPos.x > x && clickedPos.x < x + width && clickedPos.y < y && clickedPos.y > y + height
+        return (clickedPos.x > x && 
+        clickedPos.x < x + width &&
+         clickedPos.y < y && 
+         clickedPos.y > y + height)
     })
+    console.log(selectedLineIdx)
     if (selectedLineIdx < 0) return
+    console.log('byyyy')
     setCurrLineByClick(selectedLineIdx)
     renderControlBox(getCurrLine())
     renderMeme()
@@ -286,11 +298,13 @@ function getEvPos(ev) {
     }
     if (TOUCH_EVS.includes(ev.type)) {
         ev.preventDefault()
+        console.log(pos)
         ev = ev.changedTouches[0]
         pos = {
             x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
             y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
         }
+        console.log(pos)
     }
     return pos
 }
@@ -311,7 +325,25 @@ function onDownloadImg(elLink) {
 }
 
 function onSaveMeme() {
-    saveMeme()
+    flashMsg('meme saved')
+    draw_rect = false
+    renderMeme()
+    setTimeout(() => {
+        saveMeme(gCanvas.toDataURL('image/png'))
+    }, 1000);
+    setTimeout(() => {
+        draw_rect = true
+        renderMeme()
+    }, 2000);
 }
 
+
+function flashMsg(msg) {
+    const el = document.querySelector('.user-msg')
+    el.innerText = msg
+    el.classList.add('open')
+    setTimeout(() => {
+        el.classList.remove('open')
+    }, 3000)
+}
 

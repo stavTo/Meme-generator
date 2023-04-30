@@ -6,6 +6,7 @@ function onToggleMenu() {
     elBtn.innerText = elBtn.innerText === '☰' ? 'X' : '☰';
 }
 
+
 function renderGallery() {
     const imgs = getImgs()
     let strHTML = `
