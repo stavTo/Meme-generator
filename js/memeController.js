@@ -93,8 +93,8 @@ function renderControlBox(line) {
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gCanvas.width = elContainer.offsetWidth
-    gCanvas.height =  gCanvas.width
-    
+    gCanvas.height = gCanvas.width
+
 }
 
 function drawText() {
@@ -245,9 +245,7 @@ function addTouchListeners() {
 
 function onDown(ev) {
     const pos = getEvPos(ev)
-    console.log(pos)
     if (!isLineClicked(pos)) return
-    console.log('hvvvvv')
     setLineDrag(true)
     gStartPos = pos
     document.body.style.cursor = 'grabbing'
@@ -255,7 +253,6 @@ function onDown(ev) {
 
 function onMove(ev) {
     const { isDrag } = getCurrLine()
-    // console.log(isDrag)
     if (!isDrag) return
     const pos = getEvPos(ev)
     const dx = pos.x - gStartPos.x
@@ -271,43 +268,41 @@ function onUp() {
 }
 
 function isLineClicked(clickedPos) {
-    
-    console.log('hee')
     const selectedLineIdx = getMeme().lines.findIndex((line) => {
-        console.log(line)
         const { x, y, width, height } = calcTextBox(line)
-        return (clickedPos.x > x && 
-        clickedPos.x < x + width &&
-         clickedPos.y < y && 
-         clickedPos.y > y + height)
+        return (clickedPos.x > x &&
+            clickedPos.x < x + width &&
+            clickedPos.y < y &&
+            clickedPos.y > y + height)
     })
-    console.log(selectedLineIdx)
     if (selectedLineIdx < 0) return
-    console.log('byyyy')
     setCurrLineByClick(selectedLineIdx)
     renderControlBox(getCurrLine())
     renderMeme()
     return true
 }
 
-
 function getEvPos(ev) {
-    let pos = {
+    var pos = {
         x: ev.offsetX,
         y: ev.offsetY,
     }
+
     if (TOUCH_EVS.includes(ev.type)) {
         ev.preventDefault()
-        console.log(pos)
         ev = ev.changedTouches[0]
+
         pos = {
-            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+            x: ev.pageX - ev.target.offsetLeft - 20,
+            y: ev.pageY - ev.target.offsetParent.offsetTop,
         }
-        console.log(pos)
     }
+
     return pos
 }
+
+
+
 
 function onDownloadImg(elLink) {
     // need to remove the rect
